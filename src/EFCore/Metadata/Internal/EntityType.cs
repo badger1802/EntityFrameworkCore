@@ -81,7 +81,7 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
         {
             if (!clrType.IsValidEntityType())
             {
-                throw new ArgumentException(CoreStrings.InvalidEntityType(clrType, nameof(clrType)));
+                throw new ArgumentException(CoreStrings.InvalidEntityType(clrType));
             }
 
             _properties = new SortedDictionary<string, Property>(new PropertyComparer(this));

@@ -1246,12 +1246,12 @@ namespace Microsoft.EntityFrameworkCore.Internal
             => GetString("RelationshipCannotBeInverted");
 
         /// <summary>
-        ///     The entity type '{type}' provided for the argument '{argumentName}' must be a reference type.
+        ///     The specified type '{type}'must be a non-interface reference type to be used as an entity type .
         /// </summary>
-        public static string InvalidEntityType([CanBeNull] object type, [CanBeNull] object argumentName)
+        public static string InvalidEntityType([CanBeNull] object type)
             => string.Format(
-                GetString("InvalidEntityType", nameof(type), nameof(argumentName)),
-                type, argumentName);
+                GetString("InvalidEntityType", nameof(type)),
+                type);
 
         /// <summary>
         ///     The relationship from '{referencingEntityTypeOrNavigation}' to '{referencedEntityTypeOrNavigation}' with foreign key properties {foreignKeyPropertiesWithTypes} cannot target the primary key {primaryKeyPropertiesWithTypes} because it is not compatible. Configure a principal key or a set of compatible foreign key properties for this relationship.
@@ -1739,7 +1739,7 @@ namespace Microsoft.EntityFrameworkCore.Internal
                 entityType, property);
 
         /// <summary>
-        ///     A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.
+        ///     A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext, however instance members are not guaranteed to be thread safe. This could also be caused by a nested query being evaluated on the client, if this is the case rewrite the query avoiding nested invocations.
         /// </summary>
         public static string ConcurrentMethodInvocation
             => GetString("ConcurrentMethodInvocation");
